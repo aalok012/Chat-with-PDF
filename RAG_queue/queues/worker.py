@@ -16,12 +16,12 @@ vector_db = QdrantVectorStore.from_existing_collection(
      embedding=embedding_model
 )
 
-#take the user input
-user_input = input("ASK something: ")
+# #take the user input
+# query = input("ASK something: ")
 
 def process_query(query:str):
     print("Searching chunks", query)
-    search_results = vector_db.similarity_search(query=user_input)
+    search_results = vector_db.similarity_search(query=query)
     
     context="\n\n\n".join([f"Page content: {result.page_content}\nPage Number:{result.metadata['page_label']} \nFile Location: {result.metadata['source']}" for result in search_results])
 
@@ -40,7 +40,7 @@ def process_query(query:str):
         model="gpt-5",
         messages=[
             {"role": "system", "content":SYSTEM_PROMPT},
-            {"role": "system", "content":user_input },
+            {"role": "system", "content":query },
             
         ]
     )

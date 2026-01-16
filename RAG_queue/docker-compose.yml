@@ -1,8 +1,8 @@
 services:
-    redis:
-      image: redis/redis
-      ports:
-        - 6379:6379
+    # redis:
+    #   image: redis/redis
+    #   ports:
+    #     - 6379:6379
 
     vector-db:
       image: qdrant/qdrant
